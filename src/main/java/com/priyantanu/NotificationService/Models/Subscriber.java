@@ -20,7 +20,7 @@ public class Subscriber {
             return topic.areNewMessagesPresent(this.subscriberId);
     }
 
-    public String getNextMessage(@NonNull String topicName){
+    public Message getNextMessage(@NonNull String topicName){
         Topic topic = this.topicFactory.getTopic(topicName);
         return topic.getNextMessage(this.subscriberId);
     }

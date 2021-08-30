@@ -11,7 +11,7 @@ public class Topic {
     @Getter
     private final String topicName;
     private final TopicOffset offset;
-    private final List<String> messageList;
+    private final List<Message> messageList;
 
     public Topic(String topicName){
         this.topicName = topicName;
@@ -24,29 +24,21 @@ public class Topic {
         return Boolean.TRUE;
     }
 
-    private Boolean increaseSubscriberOffset(@NonNull String subscriberId){
-        HashMap<String, Integer> subscriberOffset =  offset.getSubscriberOffset();
-        if(subscriberOffset.containsKey(subscriberId)){
-            subscriberOffset.put(subscriberId,subscriberOffset.get(subscriberId) + 1);
-        }
-        return Boolean.TRUE;
-    }
-
-
-    public Boolean publishMessage(@NonNull String message){
+    public Boolean publishMessage(@NonNull Message message){
         this.messageList.add(message);
         increaseMessageOffset();
         return true;
     }
 
-    public String getNextMessage(@NonNull String subscriberId){
+    public Message getNextMessage(@NonNull String subscriberId){
         HashMap<String, Integer> subscriberOffset = offset.getSubscriberOffset();
-        if(subscriberOffset.containsKey(subscriberId)){
-            if(subscriberOffset.get(subscriberId) <= offset.getMessageOffset()){
-                String message = messageList.get(subscriberOffset.get(subscriberId));
-                subscriberOffset.put(subscriberId,subscriberOffset.get(subscriberId)+1);
-                return message;
-            }
+        if(!subscriberOffset.containsKey(subscriberId)){
+            subscriberOffset.put(subscriberId,0);
+        }
+        if(subscriberOffset.get(subscriberId) < offset.getMessageOffset()){
+            Message message = messageList.get(subscriberOffset.get(subscriberId));
+            subscriberOffset.put(subscriberId,subscriberOffset.get(subscriberId)+1);
+            return message;
         }
         return null;
     }

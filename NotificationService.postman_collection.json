@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "5710bd71-f21f-466d-b00f-590974ad1517",
+		"name": "NotificationService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreatePublisher",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "PublishMessage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    publisherId: \"rama\",\n    message: {\n        messageContent: \"Priyantanu Gupta Message is here\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/createPublisher/topic1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"createPublisher",
+						"topic1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribe1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Subscribe2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "resetOffset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

@@ -14,7 +14,7 @@ public class Publisher {
         this.topicFactory = topicFactory;
     }
 
-    public boolean publishMessage(@NonNull String topicName, @NonNull String message){
+    public boolean publishMessage(@NonNull String topicName, @NonNull Message message){
         Topic topic =  this.topicFactory.getTopic(topicName);
         if(topic == null){
             this.topicFactory.createTopic(topicName);

@@ -17,9 +17,11 @@ public class SubscriberFactory {
 
     public Subscriber getSubscriber(@NonNull String subscriberId){
         Subscriber subscriberResponse;
-        for(Subscriber subscriber: subscriberList){
-            if(subscriber.getSubscriberId().equals(subscriberId))
-                return subscriber;
+        if(!subscriberList.isEmpty()){
+            for(Subscriber subscriber: subscriberList){
+                if(subscriber.getSubscriberId().equals(subscriberId))
+                    return subscriber;
+            }
         }
         subscriberResponse = new Subscriber(subscriberId, topicFactory);
         subscriberList.add(subscriberResponse);
