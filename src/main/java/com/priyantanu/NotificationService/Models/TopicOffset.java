@@ -1,7 +1,6 @@
-package Models;
+package com.priyantanu.NotificationService.Models;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashMap;

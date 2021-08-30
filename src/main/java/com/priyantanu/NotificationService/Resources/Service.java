@@ -1,10 +1,10 @@
-package Resources;
+package com.priyantanu.NotificationService.Resources;
 
-import Factory.PublisherFactory;
-import Factory.SubscriberFactory;
-import Factory.TopicFactory;
-import Models.Publisher;
-import Models.Subscriber;
+import com.priyantanu.NotificationService.Factory.PublisherFactory;
+import com.priyantanu.NotificationService.Factory.SubscriberFactory;
+import com.priyantanu.NotificationService.Factory.TopicFactory;
+import com.priyantanu.NotificationService.Models.Publisher;
+import com.priyantanu.NotificationService.Models.Subscriber;
 import lombok.NonNull;
 
 public class Service {

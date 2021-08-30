@@ -1,6 +1,7 @@
-package Models;
+package com.priyantanu.NotificationService.Models;
 
-import Factory.TopicFactory;
+
+import com.priyantanu.NotificationService.Factory.TopicFactory;
 import lombok.Getter;
 import lombok.NonNull;
 

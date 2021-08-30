@@ -1,6 +1,6 @@
-package Factory;
+package com.priyantanu.NotificationService.Factory;
 
-import Models.Subscriber;
+import com.priyantanu.NotificationService.Models.Subscriber;
 import lombok.NonNull;
 
 import java.util.ArrayList;
