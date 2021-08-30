@@ -22,25 +22,42 @@ public class NotificationServiceApplication {
 	}
 
 	@GetMapping("/createPublisher/{publisherId}")
-	public Publisher getPublisher(@PathVariable(value = "publisherId") String publisherId){
-		return this.service.getPublisher(publisherId);
+	public Publisher createPublisher(@PathVariable(value = "publisherId") String publisherId){
+		Publisher publisher = this.service.getPublisher(publisherId);
+		System.out.println("created publisher "+ publisher);
+		return publisher;
+	}
+
+	@GetMapping("/createSubscriber/{subscriberId}")
+	public Subscriber createSubscriber(@PathVariable(value = "subscriberId") String subscriberId){
+		Subscriber subscriber = this.service.getSubscriber(subscriberId);
+		System.out.println("created subscriber "+ subscriber);
+		return subscriber;
 	}
 
 	@PutMapping("/publishMessage/{topicName}")
 	public boolean publishMessage(@PathVariable(value = "topicName") String topicName, @RequestBody PublishMessageRequest publishMessageRequest){
 		Publisher publisher =  this.service.getPublisher(publishMessageRequest.getPublisherId());
-		return publisher.publishMessage(topicName, publishMessageRequest.getMessage());
+		boolean isMessagePublished =  publisher.publishMessage(topicName, publishMessageRequest.getMessage());
+		System.out.println("message published " + isMessagePublished + " " + publishMessageRequest.message);
+		return isMessagePublished;
 	}
 
-	@GetMapping("/getNextMessage/{topicName}")
+	@PutMapping("/getNextMessage/{topicName}")
 	public Message getNextMessage(@PathVariable(value = "topicName") String topicName, @RequestBody String subscriberId){
 		Subscriber subscriber =  this.service.getSubscriber(subscriberId);
-		return subscriber.getNextMessage(topicName);
+		Message message = subscriber.getNextMessage(topicName);
+		System.out.println("next message is provided to subscriber "+ subscriberId + " " + topicName);
+		if(message == null){
+			return new Message("null");
+		}
+		return message;
 	}
 
-	@GetMapping("/resetOffset/{topicName}")
+	@PutMapping("/resetOffset/{topicName}")
 	public boolean resetOffset(@PathVariable(value = "topicName") String topicName, @RequestBody String subscriberId){
 		Subscriber subscriber = this.service.getSubscriber(subscriberId);
+		System.out.println("reset offset occured");
 		return subscriber.clearSubscriberOffset(topicName);
 	}
 

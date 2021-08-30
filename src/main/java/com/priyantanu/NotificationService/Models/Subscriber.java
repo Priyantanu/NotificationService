@@ -22,7 +22,10 @@ public class Subscriber {
 
     public Message getNextMessage(@NonNull String topicName){
         Topic topic = this.topicFactory.getTopic(topicName);
-        return topic.getNextMessage(this.subscriberId);
+        if(topic!=null){
+            return topic.getNextMessage(this.subscriberId);
+        }
+        return null;
     }
 
     public boolean clearSubscriberOffset(@NonNull String topicName){

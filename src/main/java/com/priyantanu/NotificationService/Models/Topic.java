@@ -24,13 +24,13 @@ public class Topic {
         return Boolean.TRUE;
     }
 
-    public Boolean publishMessage(@NonNull Message message){
+    synchronized public Boolean publishMessage(@NonNull Message message){
         this.messageList.add(message);
         increaseMessageOffset();
         return true;
     }
 
-    public Message getNextMessage(@NonNull String subscriberId){
+    synchronized public Message getNextMessage(@NonNull String subscriberId){
         HashMap<String, Integer> subscriberOffset = offset.getSubscriberOffset();
         if(!subscriberOffset.containsKey(subscriberId)){
             subscriberOffset.put(subscriberId,0);

@@ -30,9 +30,11 @@ public class TopicFactory {
     }
 
     public Topic getTopic(@NonNull String topicName){
-        for(Topic topic: topicList){
-            if(topic.getTopicName().equals(topicName)){
-                return topic;
+        if(!topicList.isEmpty()){
+            for(Topic topic: topicList){
+                if(topic.getTopicName().equals(topicName)){
+                    return topic;
+                }
             }
         }
         return null;
